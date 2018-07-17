@@ -24,7 +24,7 @@
 （ASHX）下的工作原理和如何实现一句话木马的介绍，当然介绍之前笔者找到了一款ashx马儿
 <https://github.com/tennc/webshell/blob/master/caidao-shell/customize.ashx>
 
-![](media/cfe3bd4d1741bdf82ea1f5015259e528.png)
+![](/cfe3bd4d1741bdf82ea1f5015259e528.png)
 
 这个马儿已经实现了菜刀可连，可用，还是挺棒的，但因为体积过大，并且在服务端实现了大多数功能，其实更像是一个大马，只是对客户端的菜刀做了适配可用，所以不能说是一句话木马了，至于要打造一款居家旅行必备的菜刀马，还得从原理上搞清楚
 ashx的运行过程。
@@ -40,7 +40,7 @@ Feed、XML、图片等。
 当Http请求进入 Asp.Net Runtime以后，它的管道由托管模块（NOTE：Managed
 Modules）和处理程序（NOTE：Handlers）组成，并且由管道来处理这个 Http请求。
 
-![](media/42ea4d7d1c27a6a8bd9a51e7353606ba.png)
+![](/42ea4d7d1c27a6a8bd9a51e7353606ba.png)
 
 HttpRuntime将Http请求转交给
 HttpApplication，HttpApplication代表着程序员创建的Web应用程序。HttpApplication创建针对此Http请求的
@@ -55,7 +55,7 @@ HttpContext对象，这些对象包含了关于此请求的诸多其他对象，
 首先可以打开C:\\WINDOWS\\Microsoft.NET\\Framework\\v4.0.30319\\CONFIG\\
 目录下的web.config 文件，找到httpHandlers结点，应该可以看到如下这样的代码
 
-![](media/6323f4ff3289bce013ca67fa8756db51.png)
+![](/6323f4ff3289bce013ca67fa8756db51.png)
 
 .Net
 Framework在处理Http请求时的所采用的默认Handler。而如果我们要用编程的方式来操控一个Http请求，我们就需要实现IHttpHandler接口，来定制我们自己的需求。IHttpHandler的定义是这样的：
@@ -83,18 +83,18 @@ IHttpHandler
 
 方法名中的参数和类型之间用冒号分割 ，一对括号外的是返回的类型 。可参考下图
 
-![](media/283d1e6eac340b60f29ad17f76b111b8.png)
+![](/283d1e6eac340b60f29ad17f76b111b8.png)
 
 如果要访问类中的属性，需使用 function get 语句，可参考下图
 
-![](media/55c4f3889bb1f3cb9c05424175f2c497.png)
+![](/55c4f3889bb1f3cb9c05424175f2c497.png)
 
 Jscript简单语法就介绍到这里，更多的语法可参考微软官方文档：<https://docs.microsoft.com/zh-cn/previous-versions/visualstudio/visual-studio-2010/z688wt03(v%3dvs.100)>
 
 万事俱备，打开浏览器输入 context.Response.Write(DateTime.Now.ToString())
 成功打印出当前时间
 
-![](media/3091a3a6df47bd40f47e56fea162dd8f.png)
+![](/3091a3a6df47bd40f47e56fea162dd8f.png)
 
 3.2、异步处理：IHttpAsyncHandler 
 ---------------------------------
@@ -104,7 +104,7 @@ Jscript简单语法就介绍到这里，更多的语法可参考微软官方文�
 而采用异步来减少阻塞工作线程的一种替代同步调用的方法。
 反之，如果服务器的压力已经足够大，或者没有发生各种I/O等待，那么，在此情况下使用异步是没有意义的。那么在HttpHandler的接口里要想支持异步，则必须使用另一个接口：IhttpAsyncHandler
 
-![](media/4770202468db077c7f2569a7685389bd.png)
+![](/4770202468db077c7f2569a7685389bd.png)
 
 这个接口也很简单只有二个方法，在.net中，异步都是建立在IAsyncResult接口之上的，而BeginProcessRequest
 /
@@ -125,14 +125,14 @@ EndProcessRequest是对这个接口最直接的使用方式。笔者通过创建
 
 打开浏览器，测试效果如下
 
-![](media/df68d91455973f871b5bca7a35d78566.png)
+![](/df68d91455973f871b5bca7a35d78566.png)
 
 0X04 菜刀连接 
 ==============
 
 圈内常说武功再高，也怕菜刀；那么就有必要了解一下菜刀在连接ASPX的时候会发送什么数据了，经过抓包得到下图的请求
 
-![](media/f31536999ba459149cb20b735428fffd.png)
+![](/f31536999ba459149cb20b735428fffd.png)
 
 对于.NET平台的应用程序默认连接后发送的可执行字符串是Response.Write，而这样的输出需要继承的对象是Page类，所以至今为止，在菜刀的层面.NET下仅支持ASPX，再来看一般处理程序中已经继承了HttpContext对象实例化后的变量context，由此可以构造出
 
@@ -142,11 +142,11 @@ EndProcessRequest是对这个接口最直接的使用方式。笔者通过创建
 
 修改好后用菜刀连接成功，如下图
 
-![](media/42d1d251ae955f3cc5ab7a437693dd2d.png)
+![](/42d1d251ae955f3cc5ab7a437693dd2d.png)
 
 基于优化考虑将HandlerSpy.ashx进一步压缩体积后只有531字节，而AsyncHandlerSpy.ashx也才719字节。
 
-![](media/8036893ca2b8ca6a79b9ad70a77963e8.png)
+![](/8036893ca2b8ca6a79b9ad70a77963e8.png)
 
 0x05 防御措施
 =============
