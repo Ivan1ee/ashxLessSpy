@@ -171,7 +171,7 @@ EndProcessRequest是对这个接口最直接的使用方式。笔者通过创建
 
 <http://www.freebuf.com/articles/web/11687.html>
 
-# 扫描下方二维码欢迎和笔者交流
+# 欢迎扫描下方二维码和笔者交流
 
 ![](media/wechat.png)
 
