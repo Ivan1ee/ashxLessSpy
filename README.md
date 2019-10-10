@@ -171,8 +171,3 @@ EndProcessRequest是对这个接口最直接的使用方式。笔者通过创建
 
 <http://www.freebuf.com/articles/web/11687.html>
 
-
-# 云影实验室长期招聘安全开发工程师 (可实习) / 安全研究员(样本沙箱方向)岗位，有意者可联系笔者微信号  
-
-![](media/wechat.png)
-
